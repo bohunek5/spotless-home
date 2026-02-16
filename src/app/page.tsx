@@ -8,8 +8,10 @@ import {
   Calendar,
   Users,
   Droplets, Heart, Zap,
-  Leaf, Home, Briefcase, Building2, Waves
+  Leaf, Home, Briefcase, Building2, Waves,
+  Ship, Warehouse, ShieldCheck, Microscope
 } from "lucide-react";
+
 
 import { Button } from "@/components/ui/button";
 import { BookingWizard } from "@/components/BookingWizard";
@@ -23,6 +25,16 @@ export default function LandingPage() {
     restDelta: 0.001
   });
 
+  const niches = [
+    { label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
+    { label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
+    { label: "Dla Hoteli", icon: Building2, bg: "bg-purple-600", shadow: "shadow-purple-600/20", letter: "H" },
+    { label: "Jachty", icon: Ship, bg: "bg-sky-500", shadow: "shadow-sky-500/20", letter: "J" },
+    { label: "Hale", icon: Warehouse, bg: "bg-indigo-600", shadow: "shadow-indigo-600/20", letter: "L" },
+    { label: "Specjalistyczne", icon: Waves, bg: "bg-emerald-600", shadow: "shadow-emerald-600/20", letter: "S" }
+  ];
+
+
   const fadeIn = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -32,10 +44,13 @@ export default function LandingPage() {
 
   const visualizations = [
     { title: "Minimalistyczny Salon", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800", desc: "Perfekcja w każdym detalu." },
-    { title: "Nowoczesna Kuchnia", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", desc: "Higiena na najwyższym poziomie." },
-    { title: "Luksusowa Łazienka", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800", desc: "Twoja oaza spokoju." },
-    { title: "Przestrzeń Biurowa", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", desc: "Produktywność w czystym otoczeniu." }
+    { title: "Luksusowe Jachty", img: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&q=80&w=800", desc: "Nieskazitelna czystość na wodzie." },
+    { title: "Nowoczesne Biura", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", desc: "Produktywność w czystym otoczeniu." },
+    { title: "Hale Przemysłowe", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800", desc: "Zarządzanie czystością na dużą skalę." },
+    { title: "Hotelowe Lobby", img: "https://images.unsplash.com/photo-1541339946196-5fd8b81e3532?auto=format&fit=crop&q=80&w=800", desc: "Pierwsze wrażenie, które zachwyca." },
+    { title: "Prywatne Apartamenty", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800", desc: "Twoja oaza spokoju i świeżości." }
   ];
+
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
@@ -61,31 +76,28 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform animate-shine">
+              <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform animate-shine text-xs md:text-sm">
                 <Sparkles className="w-5 h-5 text-teal-500 animate-sparkle" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
               </Badge>
-              <h1 className="text-8xl md:text-[13rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.1em] leading-[0.7] mb-12 relative animate-shine py-8">
+              <h1 className="text-7xl md:text-[13rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.08em] md:tracking-[-0.1em] leading-[0.8] md:leading-[0.7] mb-12 relative animate-shine py-8 overflow-visible">
                 Świat <br />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
                   Lśni.
-                  <Sparkles className="absolute -top-12 -right-20 w-20 h-20 text-teal-400 animate-sparkle" />
-                  <Sparkles className="absolute -bottom-8 -left-20 w-12 h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
+                  <Sparkles className="absolute -top-6 md:-top-12 -right-10 md:-right-20 w-12 md:w-20 h-12 md:h-20 text-teal-400 animate-sparkle" />
+                  <Sparkles className="absolute -bottom-4 md:-bottom-8 -left-10 md:-left-20 w-8 md:w-12 h-8 md:h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
                 </span>
               </h1>
 
 
-              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight">
-                Zarezerwuj w 60 sekund. Ciesz się luksusowym wykończeniem bez wychodzenia z domu.
+              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight px-4 flex flex-col items-center">
+                <span>Zarezerwuj w 60 sekund.</span>
+                <span className="opacity-70 text-base md:text-xl">Ciesz się luksusowym wykończeniem bez wychodzenia z domu.</span>
               </p>
 
-              {/* Niche Quick Links */}
-              <div className="flex flex-wrap justify-center gap-6 mb-24 relative z-20">
-                {[
-                  { label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
-                  { label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
-                  { label: "Dla Hoteli", icon: Building2, bg: "bg-purple-600", shadow: "shadow-purple-600/20", letter: "H" },
-                  { label: "Dla Biura", icon: Waves, bg: "bg-indigo-600", shadow: "shadow-indigo-600/20", letter: "S" }
-                ].map((niche, i) => (
+
+              {/* Niche Quick Links - Improved Responsive Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-24 relative z-20 px-4">
+                {niches.map((niche, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -93,21 +105,22 @@ export default function LandingPage() {
                     transition={{ delay: 0.6 + (i * 0.1), type: "spring" }}
                     className="relative group cursor-pointer"
                   >
-                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/40 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20">
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/10 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20 hidden md:block">
                       {niche.letter}
                     </div>
-                    <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-110 active:scale-95 transition-all duration-300 relative z-10 animate-shine`}>
-                      <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform`}>
+                    <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-105 active:scale-95 transition-all duration-300 relative z-10 animate-shine h-full`}>
+                      <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform shrink-0`}>
                         <niche.icon size={24} />
                       </div>
-                      <div className="flex flex-col items-start leading-none">
+                      <div className="flex flex-col items-start leading-none text-left">
                         <span className="font-black text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Kategoria</span>
-                        <span className="font-black text-base tracking-tight text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors">{niche.label}</span>
+                        <span className="font-black text-base tracking-tight text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors whitespace-nowrap">{niche.label}</span>
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
+
 
             </motion.div>
           </div>
@@ -204,7 +217,8 @@ export default function LandingPage() {
             <p className="text-slate-500 dark:text-slate-400 font-medium text-lg max-w-sm">Dbamy o każdą powierzchnię, używając specjalistycznych środków i nowoczesnego sprzętu.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
             {visualizations.map((v, i) => (
               <motion.div
                 key={i}
@@ -288,7 +302,73 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Technology Section */}
+      <section className="py-32 bg-slate-900 dark:bg-black overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div {...fadeIn}>
+              <Badge className="mb-6 bg-teal-500 text-white rounded-full px-6 py-2 border-0">Technologia 2026</Badge>
+              <h2 className="text-4xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none">
+                Czystość na poziomie <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Molekularnym.</span>
+              </h2>
+              <p className="text-slate-400 text-xl font-medium leading-relaxed mb-12">
+                Nie tylko sprzątamy. My sterylizujemy i odświeżamy przestrzeń, używając najnowocześniejszych technologii, które są bezpieczne dla Twojego zdrowia i planety.
+              </p>
+
+              <div className="space-y-8">
+                {[
+                  { title: "Filtracja HEPA H14", desc: "Zatrzymujemy 99.99% pyłów, alergenów i wirusów w każdym pomieszczeniu.", icon: ShieldCheck },
+                  { title: "Analiza Mikroskopowa", desc: "Po każdym sprzątaniu weryfikujemy czystość powierzchni specjalistycznym sprzętem.", icon: Microscope },
+                  { title: "Eko-Polimery", desc: "Nasze środki tworzą niewidzialną barierę ochronną, która odpycha kurz przez 14 dni.", icon: Leaf }
+                ].map((tech, i) => (
+                  <div key={i} className="flex gap-6 group">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
+                      <tech.icon size={28} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white mb-2">{tech.title}</h4>
+                      <p className="text-slate-500 font-medium">{tech.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-teal-500/20 blur-[120px] rounded-full animate-pulse" />
+              <div className="relative rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
+                  alt="Tech"
+                  width={800}
+                  height={1000}
+                  className="object-cover transition-transform duration-1000 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/5 backdrop-blur-3xl rounded-3xl border border-white/10">
+                  <p className="text-teal-400 font-black text-xs uppercase tracking-widest mb-2">Status Systemu</p>
+                  <div className="flex justify-between items-end">
+                    <p className="text-white text-2xl font-black">Optymalizacja Czystości: 99.9%</p>
+                    <div className="flex gap-2">
+                      <div className="w-2 h-8 bg-teal-500 rounded-full animate-bounce" />
+                      <div className="w-2 h-12 bg-teal-500 rounded-full animate-bounce [animation-delay:0.2s]" />
+                      <div className="w-2 h-6 bg-teal-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <section id="testimonials" className="py-32 bg-white dark:bg-slate-950 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white text-center mb-24 tracking-tight leading-tight">Dołącz do <span className="text-teal-600">tysięcy rodzin</span>,<br /> które nam zaufały.</h2>
