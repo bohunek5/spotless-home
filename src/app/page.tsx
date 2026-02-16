@@ -8,8 +8,9 @@ import {
   Calendar,
   Users,
   Droplets, Heart, Zap,
-  Leaf
+  Leaf, Home, Briefcase, Building2, Waves
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { BookingWizard } from "@/components/BookingWizard";
 import { Badge } from "@/components/ui/badge";
@@ -60,15 +61,54 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <Badge variant="secondary" className="mb-6 py-2 px-8 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-xl inline-flex items-center gap-2 group cursor-default hover:scale-105 transition-transform">
-                <Sparkles className="w-4 h-4 text-teal-500 animate-pulse" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
+              <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform animate-shine">
+                <Sparkles className="w-5 h-5 text-teal-500 animate-sparkle" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
               </Badge>
-              <h1 className="text-6xl md:text-9xl font-black text-slate-900 dark:text-white tracking-tight leading-[0.85] mb-10">
-                Dom, który <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-blue-500 to-purple-600">Lśni Czystością.</span>
+              <h1 className="text-8xl md:text-[13rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.1em] leading-[0.7] mb-12 relative animate-shine py-8">
+                Świat <br />
+                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
+                  Lśni.
+                  <Sparkles className="absolute -top-12 -right-20 w-20 h-20 text-teal-400 animate-sparkle" />
+                  <Sparkles className="absolute -bottom-8 -left-20 w-12 h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
+                </span>
               </h1>
-              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto mb-12">
+
+
+              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight">
                 Zarezerwuj w 60 sekund. Ciesz się luksusowym wykończeniem bez wychodzenia z domu.
               </p>
+
+              {/* Niche Quick Links */}
+              <div className="flex flex-wrap justify-center gap-6 mb-24 relative z-20">
+                {[
+                  { label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
+                  { label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
+                  { label: "Dla Hoteli", icon: Building2, bg: "bg-purple-600", shadow: "shadow-purple-600/20", letter: "H" },
+                  { label: "Dla Biura", icon: Waves, bg: "bg-indigo-600", shadow: "shadow-indigo-600/20", letter: "S" }
+                ].map((niche, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + (i * 0.1), type: "spring" }}
+                    className="relative group cursor-pointer"
+                  >
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/40 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20">
+                      {niche.letter}
+                    </div>
+                    <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-110 active:scale-95 transition-all duration-300 relative z-10 animate-shine`}>
+                      <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform`}>
+                        <niche.icon size={24} />
+                      </div>
+                      <div className="flex flex-col items-start leading-none">
+                        <span className="font-black text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Kategoria</span>
+                        <span className="font-black text-base tracking-tight text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors">{niche.label}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
             </motion.div>
           </div>
 
@@ -77,9 +117,13 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.3 }}
-            className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[4rem] shadow-[0_32px_128px_-16px_rgba(0,0,0,0.1)] dark:shadow-none border border-white/40 dark:border-slate-800 p-1 md:p-3 overflow-hidden group"
+            className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-3xl rounded-[4rem] shadow-[0_64px_128px_-16px_rgba(20,184,166,0.15)] dark:shadow-none border border-white dark:border-slate-800 p-2 md:p-4 overflow-hidden group relative"
           >
-            <div className="bg-slate-950 dark:bg-black rounded-[3.2rem] p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden">
+            {/* Extreme Clean Shine over the whole container */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+
+            <div className="bg-slate-950 dark:bg-black rounded-[3.2rem] p-8 md:p-14 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden animate-shine">
+
               {/* Background glow for the bar */}
               <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-500/10 blur-[100px] pointer-events-none" />
 
