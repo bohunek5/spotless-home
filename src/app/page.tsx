@@ -46,83 +46,108 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Dynamic Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+          <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-teal-500/20 rounded-full blur-[100px] animate-float" />
+          <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-float-delayed" />
+          <div className="absolute top-[40%] right-[20%] w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] animate-float" />
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16 px-4">
+          <div className="text-center max-w-4xl mx-auto mb-16 px-4">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <Badge variant="secondary" className="mb-4 py-1.5 px-6 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 font-bold border-teal-100 dark:border-teal-900/50 inline-flex items-center gap-2">
-                <Star className="w-4 h-4 fill-teal-700 dark:fill-teal-400" /> Najlepszy serwis sprzątający na Mazurach
+              <Badge variant="secondary" className="mb-6 py-2 px-8 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-xl inline-flex items-center gap-2 group cursor-default hover:scale-105 transition-transform">
+                <Sparkles className="w-4 h-4 text-teal-500 animate-pulse" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
               </Badge>
-              <h1 className="text-5xl md:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[0.95] mb-8">
-                Czysty Dom w <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-600">3 Kliknięcia.</span>
+              <h1 className="text-6xl md:text-9xl font-black text-slate-900 dark:text-white tracking-tight leading-[0.85] mb-10">
+                Dom, który <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-blue-500 to-purple-600">Lśni Czystością.</span>
               </h1>
-              <p className="text-lg md:text-2xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto">
-                Rewolucjonizujemy rynek sprzątania. Wybierz profesjonalizm, na który zasłużysz. Szybka rezerwacja, nieskazitelne efekty.
+              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto mb-12">
+                Zarezerwuj w 60 sekund. Ciesz się luksusowym wykończeniem bez wychodzenia z domu.
               </p>
             </motion.div>
           </div>
 
           <motion.div
             id="booking"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white dark:bg-slate-900 rounded-[3rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 overflow-hidden"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.3 }}
+            className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[4rem] shadow-[0_32px_128px_-16px_rgba(0,0,0,0.1)] dark:shadow-none border border-white/40 dark:border-slate-800 p-1 md:p-3 overflow-hidden group"
           >
-            <div className="bg-slate-900 dark:bg-black p-6 md:p-10 flex flex-col lg:flex-row justify-between items-center gap-8">
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-4">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-lg relative">
+            <div className="bg-slate-950 dark:bg-black rounded-[3.2rem] p-8 md:p-12 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden">
+              {/* Background glow for the bar */}
+              <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-500/10 blur-[100px] pointer-events-none" />
+
+              <div className="flex flex-col md:flex-row items-center gap-8 relative z-10 w-full lg:w-auto">
+                <div className="flex -space-x-5">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <div key={i} className="w-16 h-16 rounded-full overflow-hidden border-4 border-slate-950 shadow-2xl relative transition-transform hover:-translate-y-2 cursor-pointer">
                       <Image
-                        src={`https://i.pravatar.cc/150?img=${i + 40}`}
-                        alt="Cleaner"
+                        src={`https://i.pravatar.cc/150?img=${i + 20}`}
+                        alt="Specialist"
                         fill
                         className="object-cover"
                       />
                     </div>
                   ))}
                 </div>
-                <div>
-                  <p className="text-white font-black text-lg">Gwarantowana Dostępność</p>
-                  <p className="text-slate-400 text-sm font-medium">Nasze ekipy są gotowe do działania 24/7</p>
+                <div className="text-center md:text-left">
+                  <p className="text-white font-black text-2xl tracking-tighter leading-none mb-1">Eksperci Spotless</p>
+                  <p className="text-teal-500 text-sm font-black uppercase tracking-widest">Dostępni już teraz w Twojej okolicy</p>
                 </div>
               </div>
-              <div className="flex gap-12 lg:gap-20">
-                <div className="text-center md:text-left group cursor-default">
-                  <p className="text-3xl lg:text-4xl font-black text-white group-hover:text-teal-400 transition-colors">4.98/5</p>
-                  <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Ocena Klientów</p>
+
+              <div className="flex gap-10 lg:gap-16 relative z-10">
+                <div className="text-center group cursor-default">
+                  <div className="flex items-center justify-center gap-1 mb-1">
+                    <p className="text-4xl lg:text-5xl font-black text-white group-hover:text-teal-400 transition-colors">4.99</p>
+                    <Star className="w-6 h-6 fill-amber-500 text-amber-500" />
+                  </div>
+                  <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Średnia Ocena</p>
                 </div>
-                <div className="text-center md:text-left group cursor-default">
-                  <p className="text-3xl lg:text-4xl font-black text-white group-hover:text-teal-400 transition-colors">100%</p>
-                  <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Bezpieczeństwa</p>
+                <div className="text-center group cursor-default">
+                  <p className="text-4xl lg:text-5xl font-black text-white group-hover:text-teal-400 transition-colors">15k+</p>
+                  <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Realizacji</p>
                 </div>
               </div>
             </div>
 
-            <BookingWizard />
+            <div className="px-4 py-8 md:px-12 md:py-12">
+              <BookingWizard />
+            </div>
           </motion.div>
         </div>
 
-        {/* Floating elements for life */}
+        {/* Floating elements with improved motion */}
         <motion.div
-          animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 text-teal-500/10 dark:text-teal-400/5"
+          animate={{
+            y: [0, -50, 0],
+            rotate: [0, 15, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-40 left-[10%] text-teal-500/20 dark:text-teal-400/10 pointer-events-none"
         >
-          <Droplets size={200} />
+          <Droplets size={160} />
         </motion.div>
         <motion.div
-          animate={{ y: [0, 30, 0], rotate: [0, -10, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-40 right-10 text-blue-500/10 dark:text-blue-400/5"
+          animate={{
+            y: [0, 60, 0],
+            rotate: [0, -15, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[60%] right-[15%] text-blue-500/20 dark:text-blue-400/10 pointer-events-none"
         >
-          <Zap size={180} />
+          <Sparkles size={140} />
         </motion.div>
       </section>
+
 
       {/* Visualizations Section */}
       <section className="py-32 bg-white dark:bg-slate-950">
