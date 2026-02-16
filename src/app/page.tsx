@@ -16,8 +16,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { BookingWizard } from "@/components/BookingWizard";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function LandingPage() {
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -26,12 +28,12 @@ export default function LandingPage() {
   });
 
   const niches = [
-    { label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
-    { label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
-    { label: "Dla Hoteli", icon: Building2, bg: "bg-purple-600", shadow: "shadow-purple-600/20", letter: "H" },
-    { label: "Jachty", icon: Ship, bg: "bg-sky-500", shadow: "shadow-sky-500/20", letter: "J" },
-    { label: "Hale", icon: Warehouse, bg: "bg-indigo-600", shadow: "shadow-indigo-600/20", letter: "L" },
-    { label: "Specjalistyczne", icon: Waves, bg: "bg-emerald-600", shadow: "shadow-emerald-600/20", letter: "S" }
+    { id: "residential", label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
+    { id: "business", label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
+    { id: "hotels", label: "Dla Hoteli", icon: Building2, bg: "bg-purple-600", shadow: "shadow-purple-600/20", letter: "H" },
+    { id: "yachts", label: "Jachty", icon: Ship, bg: "bg-sky-500", shadow: "shadow-sky-500/20", letter: "J" },
+    { id: "industrial", label: "Hale", icon: Warehouse, bg: "bg-indigo-600", shadow: "shadow-indigo-600/20", letter: "L" },
+    { id: "special", label: "Specjalistyczne", icon: Waves, bg: "bg-emerald-600", shadow: "shadow-emerald-600/20", letter: "S" }
   ];
 
 
@@ -99,27 +101,29 @@ export default function LandingPage() {
               {/* Niche Quick Links - Improved Responsive Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-24 relative z-20 px-4">
                 {niches.map((niche, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + (i * 0.1), type: "spring" }}
-                    className="relative group cursor-pointer"
-                  >
-                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/10 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20 hidden md:block">
-                      {niche.letter}
-                    </div>
-                    <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-105 active:scale-95 transition-all duration-300 relative z-10 animate-shine h-full`}>
-                      <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform shrink-0`}>
-                        <niche.icon size={24} />
+                  <Link key={i} href={`/oferta?cat=${niche.id}`}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.6 + (i * 0.1), type: "spring" }}
+                      className="relative group cursor-pointer"
+                    >
+                      <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/10 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20 hidden md:block">
+                        {niche.letter}
                       </div>
-                      <div className="flex flex-col items-start leading-none text-left">
-                        <span className="font-black text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Kategoria</span>
-                        <span className="font-black text-base tracking-tight text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors whitespace-nowrap">{niche.label}</span>
+                      <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-105 active:scale-95 transition-all duration-300 relative z-10 animate-shine h-full`}>
+                        <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform shrink-0`}>
+                          <niche.icon size={24} />
+                        </div>
+                        <div className="flex flex-col items-start leading-none text-left">
+                          <span className="font-black text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Kategoria</span>
+                          <span className="font-black text-base tracking-tight text-slate-900 dark:text-white group-hover:text-teal-600 transition-colors whitespace-nowrap">{niche.label}</span>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </Link>
                 ))}
+
               </div>
 
 
