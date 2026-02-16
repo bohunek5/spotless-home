@@ -79,14 +79,15 @@ export default function LandingPage() {
               <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform animate-shine text-xs md:text-sm">
                 <Sparkles className="w-5 h-5 text-teal-500 animate-sparkle" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
               </Badge>
-              <h1 className="text-7xl md:text-[13rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.08em] md:tracking-[-0.1em] leading-[0.8] md:leading-[0.7] mb-12 relative animate-shine py-8 overflow-visible">
+              <h1 className="text-7xl md:text-[11rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[0.9] mb-12 relative animate-shine py-8 overflow-visible">
                 Świat <br />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
                   Lśni.
                   <Sparkles className="absolute -top-6 md:-top-12 -right-10 md:-right-20 w-12 md:w-20 h-12 md:h-20 text-teal-400 animate-sparkle" />
-                  <Sparkles className="absolute -bottom-4 md:-bottom-8 -left-10 md:-left-20 w-8 md:w-12 h-8 md:h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
+                  <Sparkles className="absolute -bottom-4 md:-bottom-8 -left-12 md:-left-24 w-8 md:w-12 h-8 md:h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
                 </span>
               </h1>
+
 
 
               <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight px-4 flex flex-col items-center">
