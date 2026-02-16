@@ -15,11 +15,12 @@ export default function OfertaPage() {
     const [activeCategory, setActiveCategory] = useState("all");
 
     const categories = [
-        { id: "all", label: "Wszystkie" },
-        { id: "residential", label: "Dla Domu" },
-        { id: "business", label: "Dla Biznesu" },
-        { id: "special", label: "Specjalistyczne" }
+        { id: "all", label: "Wszystkie", icon: Sparkles },
+        { id: "residential", label: "Dla Domu", icon: Home },
+        { id: "business", label: "Dla Biznesu", icon: Briefcase },
+        { id: "special", label: "Specjalistyczne", icon: Waves }
     ];
+
 
     const services = [
         {
@@ -102,18 +103,29 @@ export default function OfertaPage() {
                     </motion.div>
                 </div>
 
-                {/* Filters */}
-                <div className="max-w-7xl mx-auto mb-20 flex justify-center flex-wrap gap-3">
-                    {categories.map(cat => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setActiveCategory(cat.id)}
-                            className={`rounded-full px-8 py-3 font-black transition-all text-sm uppercase tracking-widest ${activeCategory === cat.id ? "bg-teal-600 text-white shadow-2xl shadow-teal-500/40" : "bg-white dark:bg-slate-900 text-slate-400 border border-slate-100 dark:border-slate-800 hover:border-teal-500"}`}
-                        >
-                            {cat.label}
-                        </button>
-                    ))}
+                {/* Simplified Bubble Navigation */}
+                <div className="sticky top-24 z-50 max-w-7xl mx-auto mb-20 px-4">
+                    <div className="flex justify-center flex-wrap gap-2 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl p-2 rounded-[2.5rem] border border-white/20 dark:border-slate-800/50 shadow-2xl w-fit mx-auto">
+                        {categories.map(cat => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={`relative flex items-center gap-2 rounded-full px-6 py-3 font-black transition-all text-xs uppercase tracking-widest overflow-hidden group ${activeCategory === cat.id ? "text-white" : "text-slate-500 hover:text-teal-600"}`}
+                            >
+                                {activeCategory === cat.id && (
+                                    <motion.div
+                                        layoutId="activeBubble"
+                                        className="absolute inset-0 bg-teal-600 shadow-xl shadow-teal-500/20"
+                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                    />
+                                )}
+                                <cat.icon size={16} className={`relative z-10 transition-transform group-hover:scale-110 ${activeCategory === cat.id ? "text-teal-200" : "text-teal-600"}`} />
+                                <span className="relative z-10">{cat.label}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
+
 
                 {/* Services Grid */}
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
