@@ -9,7 +9,7 @@ import {
   Users,
   Droplets, Heart, Zap,
   Leaf, Home, Briefcase, Building2, Waves,
-  Ship, Warehouse, ShieldCheck, Microscope
+  Ship, Warehouse, ShieldCheck, ClipboardCheck
 } from "lucide-react";
 
 
@@ -49,7 +49,7 @@ export default function LandingPage() {
     { title: "Luksusowe Jachty", img: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&q=80&w=800", desc: "Nieskazitelna czystość na wodzie." },
     { title: "Nowoczesne Biura", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", desc: "Produktywność w czystym otoczeniu." },
     { title: "Hale Przemysłowe", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800", desc: "Zarządzanie czystością na dużą skalę." },
-    { title: "Hotelowe Lobby", img: "https://images.unsplash.com/photo-1541339946196-5fd8b81e3532?auto=format&fit=crop&q=80&w=800", desc: "Pierwsze wrażenie, które zachwyca." },
+    { title: "Sektor Hotelowy", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800", desc: "Zgodność ze standardami 5*." },
     { title: "Prywatne Apartamenty", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800", desc: "Twoja oaza spokoju i świeżości." }
   ];
 
@@ -78,13 +78,13 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-teal-700 dark:text-teal-400 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform animate-shine text-xs md:text-sm">
-                <Sparkles className="w-5 h-5 text-teal-500 animate-sparkle" /> #1 SERWIS SPRZĄTAJĄCY NA MAZURACH
+              <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-slate-800 dark:text-slate-200 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform text-xs md:text-sm">
+                PROFESJONALNY SERWIS PORZĄDKOWY
               </Badge>
-              <h1 className="text-7xl md:text-[11rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[0.9] mb-12 relative animate-shine py-8 overflow-visible">
-                Świat <br />
+              <h1 className="text-7xl md:text-[11rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[0.9] mb-12 relative animate-shine py-8 overflow-visible uppercase">
+                Standard <br />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
-                  Lśni.
+                  Perfekcji.
                   <Sparkles className="absolute -top-6 md:-top-12 -right-10 md:-right-20 w-12 md:w-20 h-12 md:h-20 text-teal-400 animate-sparkle" />
                   <Sparkles className="absolute -bottom-4 md:-bottom-8 -left-12 md:-left-24 w-8 md:w-12 h-8 md:h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
                 </span>
@@ -92,9 +92,9 @@ export default function LandingPage() {
 
 
 
-              <p className="text-xl md:text-3xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight px-4 flex flex-col items-center">
-                <span>Zarezerwuj w 60 sekund.</span>
-                <span className="opacity-70 text-base md:text-xl">Ciesz się luksusowym wykończeniem bez wychodzenia z domu.</span>
+              <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold leading-tight max-w-2xl mx-auto mb-16 tracking-tight px-4 flex flex-col items-center">
+                <span>Usługi Sprzątające dla Domu i Biznesu.</span>
+                <span className="opacity-70 text-base md:text-lg">Przejrzysty model współpracy i gwarancja terminowości.</span>
               </p>
 
 
@@ -159,8 +159,8 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <div className="text-center md:text-left">
-                  <p className="text-white font-black text-2xl tracking-tighter leading-none mb-1">Eksperci Spotless</p>
-                  <p className="text-teal-500 text-sm font-black uppercase tracking-widest">Dostępni już teraz w Twojej okolicy</p>
+                  <p className="text-white font-black text-2xl tracking-tighter leading-none mb-1">Zespół SPOTLESS</p>
+                  <p className="text-teal-500 text-sm font-black uppercase tracking-widest">Profesjonalizm zweryfikowany przez standardy ISO</p>
                 </div>
               </div>
 
@@ -277,8 +277,8 @@ export default function LandingPage() {
       <section className="py-32 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white mb-6">Jak to działa?</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed">System CzystyDom został zaprojektowany tak, aby zminimalizować Twój wysiłek. Zobacz 3 kroki do idealnego domu.</p>
+            <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white mb-6">Proces Obsługi</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed">System SPOTLESS został zaprojektowany tak, aby zapewnić pełną transparentność i najwyższą efektywność działań.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
@@ -314,18 +314,18 @@ export default function LandingPage() {
             <motion.div {...fadeIn}>
               <Badge className="mb-6 bg-teal-500 text-white rounded-full px-6 py-2 border-0">Technologia 2026</Badge>
               <h2 className="text-4xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none">
-                Czystość na poziomie <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Molekularnym.</span>
+                Utrzymanie Czystości <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Obiektowej.</span>
               </h2>
               <p className="text-slate-400 text-xl font-medium leading-relaxed mb-12">
-                Nie tylko sprzątamy. My sterylizujemy i odświeżamy przestrzeń, używając najnowocześniejszych technologii, które są bezpieczne dla Twojego zdrowia i planety.
+                Wdrażamy zaawansowane procesy utrzymania czystości, wykorzystując profesjonalne zaplecze techniczne oraz środki zgodne z europejskimi normami bezpieczeństwa.
               </p>
 
               <div className="space-y-8">
                 {[
-                  { title: "Filtracja HEPA H14", desc: "Zatrzymujemy 99.99% pyłów, alergenów i wirusów w każdym pomieszczeniu.", icon: ShieldCheck },
-                  { title: "Analiza Mikroskopowa", desc: "Po każdym sprzątaniu weryfikujemy czystość powierzchni specjalistycznym sprzętem.", icon: Microscope },
-                  { title: "Eko-Polimery", desc: "Nasze środki tworzą niewidzialną barierę ochronną, która odpycha kurz przez 14 dni.", icon: Leaf }
+                  { title: "Odpylanie Przemysłowe", desc: "Praca na profesjonalnych jednostkach ssących wysokiej mocy.", icon: ShieldCheck },
+                  { title: "Raportowanie i Kontrola", desc: "Dokumentacja powykonawcza zgodna z wewnętrznymi procedurami QA.", icon: ClipboardCheck },
+                  { title: "Chemia Obiektowa", desc: "Zastosowanie preparatów dedykowanych do konkretnych powierzchni.", icon: Leaf }
                 ].map((tech, i) => (
                   <div key={i} className="flex gap-6 group">
                     <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
@@ -360,7 +360,7 @@ export default function LandingPage() {
                 <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/5 backdrop-blur-3xl rounded-3xl border border-white/10">
                   <p className="text-teal-400 font-black text-xs uppercase tracking-widest mb-2">Status Systemu</p>
                   <div className="flex justify-between items-end">
-                    <p className="text-white text-2xl font-black">Optymalizacja Czystości: 99.9%</p>
+                    <p className="text-white text-2xl font-black">Realizacja Standardu: 100%</p>
                     <div className="flex gap-2">
                       <div className="w-2 h-8 bg-teal-500 rounded-full animate-bounce" />
                       <div className="w-2 h-12 bg-teal-500 rounded-full animate-bounce [animation-delay:0.2s]" />
@@ -371,8 +371,8 @@ export default function LandingPage() {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       <section id="testimonials" className="py-32 bg-white dark:bg-slate-950 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4">
@@ -380,9 +380,9 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "Anna Kowalska", loc: "Warszawa", text: "Nigdy nie sądziłam, że sprzątanie może być tak łatwe do zamówienia. Efekt przeszedł moje oczekiwania!" },
-              { name: "Marek Nowak", loc: "Kraków", text: "Profesjonalizm w każdym calu. Specjalistka przyjechała punktualnie i była niesamowicie dokładna." },
-              { name: "Julia Wiśniewska", loc: "Gdańsk", text: "Spotless to teraz mój stały partner. Dom lśni, a ja mam czas dla dzieci. Polecam każdemu!" }
+              { name: "Anna Kowalska", loc: "Inwestor", text: "Profesjonalne podejście do zarządzania czystością w pakiecie najmu krótkoterminowego. Niezawodny partner biznesowy." },
+              { name: "Marek Nowak", loc: "Właściciel Firmy", text: "Standardy SPOTLESS całkowicie zmieniły atmosferę w naszym biurze. Czystość i profesjonalizm na każdym kroku." },
+              { name: "Julia Wiśniewska", loc: "Prywatny Apartament", text: "Bezpieczeństwo, zaufanie i perfekcja. Najlepszy serwis, z jakiego miałam okazję korzystać." }
             ].map((testimonial, id) => (
               <motion.div
                 key={id}
@@ -443,6 +443,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </div >
   );
 }

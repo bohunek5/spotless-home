@@ -69,7 +69,7 @@ function OfertaContent() {
         {
             id: "biuro",
             cat: "business",
-            title: "Czysty Biznes",
+            title: "Obsługa Korporacyjna",
             desc: "Regularny serwis porządkowy dla biur, który zwiększa efektywność Twojego zespołu.",
             icon: Briefcase,
             features: ["Opróżnianie koszy", "Czyszczenie sprzętu IT", "Utrzymanie części wspólnych", "Serwis kawowy"],

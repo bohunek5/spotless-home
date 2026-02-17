@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Waves, ChevronDown, Menu, X, Sparkles,
+    ShieldCheck, ChevronDown, Menu, X, Sparkles,
     Phone, Info, CreditCard
 } from "lucide-react";
 
@@ -42,9 +42,9 @@ export const Navbar = () => {
                 <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
                     <Link href="/" className="flex items-center gap-2 group transition-transform active:scale-95">
                         <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-teal-200 dark:shadow-teal-900/20 group-hover:rotate-12 transition-transform">
-                            <Waves className="text-white w-6 h-6" />
+                            <ShieldCheck className="text-white w-6 h-6" />
                         </div>
-                        <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">CzystyDom.</span>
+                        <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">Spotless.</span>
                     </Link>
 
                     <div className="hidden lg:flex items-center gap-3">
