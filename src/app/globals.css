@@ -167,7 +167,6 @@
 
 .animate-shine {
   position: relative;
-  overflow: hidden;
 }
 
 .animate-shine::after {

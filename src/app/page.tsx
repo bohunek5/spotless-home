@@ -81,12 +81,12 @@ export default function LandingPage() {
               <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-slate-800 dark:text-slate-200 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform text-xs md:text-sm">
                 PROFESJONALNY SERWIS PORZĄDKOWY
               </Badge>
-              <h1 className="text-6xl md:text-[9rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[1] mb-12 relative animate-shine py-10 overflow-visible uppercase">
+              <h1 className="text-5xl md:text-[8rem] font-[1000] text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-12 relative py-12 px-4 overflow-visible uppercase">
                 Standard <br />
-                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
+                <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600 px-4">
                   Perfekcji.
-                  <Sparkles className="absolute -top-6 md:-top-12 -right-10 md:-right-20 w-12 md:w-20 h-12 md:h-20 text-teal-400 animate-sparkle" />
-                  <Sparkles className="absolute -bottom-4 md:-bottom-8 -left-12 md:-left-24 w-8 md:w-12 h-8 md:h-12 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
+                  <Sparkles className="absolute -top-8 md:-top-16 -right-6 md:-right-12 w-10 md:w-16 h-10 md:h-16 text-teal-400 animate-sparkle" />
+                  <Sparkles className="absolute -bottom-6 md:-bottom-10 -left-8 md:-left-16 w-6 md:w-10 h-6 md:h-10 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
                 </span>
               </h1>
 
