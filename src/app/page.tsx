@@ -81,7 +81,7 @@ export default function LandingPage() {
               <Badge variant="secondary" className="mb-8 py-3 px-10 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl text-slate-800 dark:text-slate-200 font-black border-slate-200 dark:border-slate-800 shadow-2xl inline-flex items-center gap-3 group cursor-default hover:scale-105 transition-transform text-xs md:text-sm">
                 PROFESJONALNY SERWIS PORZĄDKOWY
               </Badge>
-              <h1 className="text-7xl md:text-[11rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[0.9] mb-12 relative animate-shine py-8 overflow-visible uppercase">
+              <h1 className="text-6xl md:text-[9rem] font-[1000] text-slate-900 dark:text-white tracking-[-0.05em] leading-[1] mb-12 relative animate-shine py-10 overflow-visible uppercase">
                 Standard <br />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600">
                   Perfekcji.
