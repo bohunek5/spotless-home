@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import {
     Sparkles, Home, Briefcase,
@@ -10,17 +10,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 
 function OfertaContent() {
     const searchParams = useSearchParams();
-    const [activeCategory, setActiveCategory] = useState("all");
-
-    useEffect(() => {
-        const cat = searchParams.get("cat");
-        if (cat) setActiveCategory(cat);
-    }, [searchParams]);
+    const [activeCategory, setActiveCategory] = useState(searchParams.get("cat") ?? "all");
 
     const categories = [
         { id: "all", label: "Wszystkie", icon: Sparkles },
@@ -174,24 +169,17 @@ function OfertaContent() {
                     </motion.div>
                 </div>
 
-                {/* Simplified Bubble Navigation */}
-                <div className="sticky top-24 z-50 max-w-7xl mx-auto mb-20 px-4">
-                    <div className="flex justify-center flex-wrap gap-2 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl p-2 rounded-[3rem] border border-white/20 dark:border-slate-800/50 shadow-2xl w-fit mx-auto animate-shine">
+                {/* Category Navigation */}
+                <div className="relative z-10 max-w-7xl mx-auto mb-12 px-4">
+                    <div className="flex justify-center flex-wrap gap-2 bg-white dark:bg-slate-900 p-2 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-900/5 w-fit mx-auto">
                         {categories.map(cat => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                className={`relative flex items-center gap-2 rounded-full px-6 py-3 font-black transition-all text-[10px] md:text-xs uppercase tracking-widest overflow-hidden group ${activeCategory === cat.id ? "text-white" : "text-slate-500 hover:text-teal-600"}`}
+                                className={`relative flex items-center gap-2 rounded-2xl px-5 py-3 font-black transition-colors text-[10px] md:text-xs uppercase tracking-widest group ${activeCategory === cat.id ? "bg-teal-600 text-white" : "text-slate-500 hover:bg-slate-50 hover:text-teal-600 dark:hover:bg-slate-800"}`}
                             >
-                                {activeCategory === cat.id && (
-                                    <motion.div
-                                        layoutId="activeBubble"
-                                        className="absolute inset-0 bg-teal-600 shadow-xl shadow-teal-500/20"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                    />
-                                )}
-                                <cat.icon size={16} className={`relative z-10 transition-transform group-hover:scale-110 ${activeCategory === cat.id ? "text-teal-200" : "text-teal-600"}`} />
-                                <span className="relative z-10">{cat.label}</span>
+                                <cat.icon size={16} className={activeCategory === cat.id ? "text-teal-100" : "text-teal-600 dark:text-teal-400"} />
+                                <span>{cat.label}</span>
                             </button>
                         ))}
                     </div>
@@ -199,21 +187,18 @@ function OfertaContent() {
 
                 {/* Services Grid */}
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <AnimatePresence mode="popLayout">
-                        {filteredServices.map((u, i) => (
+                    {filteredServices.map((u, i) => (
                             <motion.div
                                 key={u.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                                transition={{ duration: 0.4, delay: i * 0.05 }}
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.2, delay: i * 0.03 }}
                             >
-                                <Card className="p-10 border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-[3rem] relative h-full flex flex-col group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                                <Card className="p-10 border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-[2rem] relative h-full flex flex-col group hover:shadow-xl transition-shadow duration-200">
                                     {u.popular && (
                                         <Badge className="absolute top-8 right-8 bg-amber-500 text-white border-0 font-black px-4 py-1.5 uppercase text-[10px] tracking-widest rounded-full shadow-lg shadow-amber-500/20">Polecane</Badge>
                                     )}
-                                    <div className="w-16 h-16 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-2xl flex items-center justify-center mb-8 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-teal-500/5">
+                                    <div className="w-16 h-16 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-teal-500/5">
                                         <u.icon size={32} />
                                     </div>
                                     <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4 tracking-tight leading-tight">{u.title}</h3>
@@ -241,8 +226,7 @@ function OfertaContent() {
                                     </div>
                                 </Card>
                             </motion.div>
-                        ))}
-                    </AnimatePresence>
+                    ))}
                 </div>
             </main>
         </>
@@ -258,4 +242,3 @@ export default function OfertaPage() {
         </div>
     );
 }
-

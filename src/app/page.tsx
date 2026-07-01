@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Sparkles, Star,
   Calendar,
   Users,
-  Droplets, Heart, Zap,
+  Heart, Zap,
   Leaf, Home, Briefcase, Building2, Waves,
   Ship, Warehouse, ShieldCheck, ClipboardCheck
 } from "lucide-react";
@@ -19,14 +19,6 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 export default function LandingPage() {
-
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   const niches = [
     { id: "residential", label: "Dla Domu", icon: Home, bg: "bg-teal-500", shadow: "shadow-teal-500/20", letter: "D" },
     { id: "business", label: "Dla Biznesu", icon: Briefcase, bg: "bg-blue-600", shadow: "shadow-blue-600/20", letter: "B" },
@@ -45,23 +37,20 @@ export default function LandingPage() {
   };
 
   const visualizations = [
+    { title: "Serwis Premium w Domu", img: "/spotless-home/visuals/premium-home-cleaning.png", desc: "Dopracowane wnętrza po profesjonalnym serwisie." },
     { title: "Minimalistyczny Salon", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800", desc: "Perfekcja w każdym detalu." },
     { title: "Luksusowe Jachty", img: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&q=80&w=800", desc: "Nieskazitelna czystość na wodzie." },
     { title: "Nowoczesne Biura", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", desc: "Produktywność w czystym otoczeniu." },
     { title: "Hale Przemysłowe", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800", desc: "Zarządzanie czystością na dużą skalę." },
     { title: "Sektor Hotelowy", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800", desc: "Zgodność ze standardami 5*." },
-    { title: "Prywatne Apartamenty", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800", desc: "Twoja oaza spokoju i świeżości." }
+    { title: "Prywatne Apartamenty", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800", desc: "Twoja oaza spokoju i świeżości." },
+    { title: "Recepcje i Lobby", img: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?auto=format&fit=crop&q=80&w=800", desc: "Pierwsze wrażenie pod pełną kontrolą." },
+    { title: "Detailing Powierzchni", img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800", desc: "Widoczna różnica na blatach, szkle i podłogach." }
   ];
 
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
-      {/* Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-teal-500 origin-left z-[101]"
-        style={{ scaleX }}
-      />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Dynamic Background Elements */}
@@ -111,7 +100,7 @@ export default function LandingPage() {
                       <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-[10rem] font-black text-slate-200 dark:text-slate-900/10 select-none pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10 group-hover:-top-20 hidden md:block">
                         {niche.letter}
                       </div>
-                      <div className={`flex items-center gap-4 px-8 py-5 rounded-[2.5rem] bg-white dark:bg-slate-900 shadow-2xl border border-slate-100 dark:border-slate-800 hover:scale-105 active:scale-95 transition-all duration-300 relative z-10 animate-shine h-full`}>
+                      <div className={`flex items-center gap-4 px-8 py-5 rounded-[2rem] bg-white dark:bg-slate-900 shadow-xl shadow-slate-900/5 border border-slate-100 dark:border-slate-800 hover:border-teal-200 dark:hover:border-teal-700 active:scale-95 transition-all duration-200 relative z-10 h-full`}>
                         <div className={`w-12 h-12 rounded-2xl ${niche.bg} flex items-center justify-center text-white shadow-xl ${niche.shadow} group-hover:rotate-12 transition-transform shrink-0`}>
                           <niche.icon size={24} />
                         </div>
@@ -140,7 +129,7 @@ export default function LandingPage() {
             {/* Extreme Clean Shine over the whole container */}
             <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/5 via-transparent to-purple-500/5 pointer-events-none" />
 
-            <div className="bg-slate-950 dark:bg-black rounded-[3.2rem] p-8 md:p-14 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden animate-shine">
+            <div className="bg-slate-950 dark:bg-black rounded-[3.2rem] p-8 md:p-14 flex flex-col lg:flex-row justify-between items-center gap-10 relative overflow-hidden">
 
               {/* Background glow for the bar */}
               <div className="absolute top-0 right-0 w-1/2 h-full bg-teal-500/10 blur-[100px] pointer-events-none" />
@@ -185,29 +174,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        {/* Floating elements with improved motion */}
-        <motion.div
-          animate={{
-            y: [0, -50, 0],
-            rotate: [0, 15, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-40 left-[10%] text-teal-500/20 dark:text-teal-400/10 pointer-events-none"
-        >
-          <Droplets size={160} />
-        </motion.div>
-        <motion.div
-          animate={{
-            y: [0, 60, 0],
-            rotate: [0, -15, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[60%] right-[15%] text-blue-500/20 dark:text-blue-400/10 pointer-events-none"
-        >
-          <Sparkles size={140} />
-        </motion.div>
       </section>
 
 
@@ -229,16 +195,16 @@ export default function LandingPage() {
                 key={i}
                 {...fadeIn}
                 transition={{ delay: i * 0.1 }}
-                className="group relative h-[500px] rounded-[3rem] overflow-hidden cursor-default"
+                className="group relative h-[500px] overflow-hidden rounded-[2rem] bg-slate-200 cursor-default"
               >
                 <Image
                   src={v.img}
                   alt={v.title}
                   fill
-                  className="object-cover transition-all duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                   sizes="(max-width: 768px) 100vw, 400px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent flex flex-col justify-end p-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-slate-950/90 via-slate-900/25 to-transparent p-8 opacity-100">
                   <h3 className="text-2xl font-black text-white mb-2">{v.title}</h3>
                   <p className="text-slate-300 font-medium">{v.desc}</p>
                 </div>

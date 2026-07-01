@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Building2, Home, Briefcase, Plus, Minus,
-    Check, ArrowRight, ArrowLeft, Calendar as CalendarIcon,
+    Check, ArrowRight, ArrowLeft,
     MapPin, Mail, Phone, CreditCard, Sparkles
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useBookingStore, EXTRAS, PropertyType } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -28,9 +29,7 @@ const steps = [
 
 export function BookingWizard() {
     const {
-        step, nextStep, prevStep, scope, setPropertyType,
-        setRooms, setBathrooms, extras, toggleExtra,
-        details, setDetails, calculateTotal
+        step, nextStep, prevStep, calculateTotal
     } = useBookingStore();
 
     const total = calculateTotal();
@@ -53,7 +52,7 @@ export function BookingWizard() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 pb-32">
+        <div className="max-w-4xl mx-auto px-4 py-8">
             {/* Progress */}
             <div className="mb-8">
                 <div className="flex justify-between items-end mb-2">
@@ -71,15 +70,15 @@ export function BookingWizard() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.18 }}
                     >
                         {renderStep()}
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* Sticky Bottom Summary (Mobile) */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 border-t bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-50 md:hidden border-slate-200 dark:border-slate-800">
+            {/* Mobile Summary */}
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-white/95 p-4 shadow-xl shadow-slate-900/10 dark:border-slate-800 dark:bg-slate-900 md:hidden">
                 <div className="flex items-center justify-between mb-2">
                     <div>
                         <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Suma szacunkowa</p>
@@ -119,7 +118,7 @@ export function BookingWizard() {
 function StepScope() {
     const { scope, setPropertyType, setRooms, setBathrooms } = useBookingStore();
 
-    const propertyTypes: { id: PropertyType; label: string; icon: any }[] = [
+    const propertyTypes: { id: PropertyType; label: string; icon: LucideIcon }[] = [
         { id: 'Apartament', label: 'Apartament', icon: Building2 },
         { id: 'Dom', label: 'Dom', icon: Home },
         { id: 'Biuro', label: 'Biuro', icon: Briefcase },

@@ -129,7 +129,7 @@
 }
 
 .animate-bubble-pulse {
-  animation: bubble-pulse 2s infinite;
+  animation: none;
 }
 
 @keyframes float {
@@ -147,12 +147,11 @@
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: none;
 }
 
 .animate-float-delayed {
-  animation: float 8s ease-in-out infinite;
-  animation-delay: 2s;
+  animation: none;
 }
 
 @keyframes shine {
@@ -170,17 +169,7 @@
 }
 
 .animate-shine::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -100%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0) 100%);
-  animation: shine 4s infinite linear;
+  display: none;
 }
 
 @keyframes sparkle {
@@ -198,5 +187,16 @@
 }
 
 .animate-sparkle {
-  animation: sparkle 2s infinite;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }
