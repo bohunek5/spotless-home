@@ -122,7 +122,7 @@ export default function KontaktPage() {
                                 </form>
                             ) : (
                                 <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-20">
-                                    <div className="w-24 h-24 bg-teal-500 rounded-full flex items-center justify-center text-white shadow-2xl shadow-teal-500/40 animate-bounce">
+                                    <div className="w-24 h-24 bg-teal-500 rounded-full flex items-center justify-center text-white shadow-2xl shadow-teal-500/40">
                                         <CheckCircle2 size={48} />
                                     </div>
                                     <div className="space-y-4">

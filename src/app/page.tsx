@@ -55,9 +55,9 @@ export default function LandingPage() {
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Dynamic Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-teal-500/20 rounded-full blur-[100px] animate-float" />
-          <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-float-delayed" />
-          <div className="absolute top-[40%] right-[20%] w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] animate-float" />
+          <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-teal-500/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]" />
+          <div className="absolute top-[40%] right-[20%] w-64 h-64 bg-purple-500/5 rounded-full blur-[80px]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -74,8 +74,8 @@ export default function LandingPage() {
                 Standard <br />
                 <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-600 px-4">
                   Perfekcji.
-                  <Sparkles className="absolute -top-8 md:-top-16 -right-6 md:-right-12 w-10 md:w-16 h-10 md:h-16 text-teal-400 animate-sparkle" />
-                  <Sparkles className="absolute -bottom-6 md:-bottom-10 -left-8 md:-left-16 w-6 md:w-10 h-6 md:h-10 text-blue-400 animate-sparkle [animation-delay:0.7s]" />
+                  <Sparkles className="absolute -top-8 md:-top-16 -right-6 md:-right-12 w-10 md:w-16 h-10 md:h-16 text-teal-400" />
+                  <Sparkles className="absolute -bottom-6 md:-bottom-10 -left-8 md:-left-16 w-6 md:w-10 h-6 md:h-10 text-blue-400" />
                 </span>
               </h1>
 
@@ -313,14 +313,14 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-teal-500/20 blur-[120px] rounded-full animate-pulse" />
+              <div className="absolute inset-0 bg-teal-500/10 blur-[120px] rounded-full" />
               <div className="relative rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl">
                 <Image
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
                   alt="Tech"
                   width={800}
                   height={1000}
-                  className="object-cover transition-transform duration-1000 hover:scale-105"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
                 <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/5 backdrop-blur-3xl rounded-3xl border border-white/10">
@@ -328,9 +328,9 @@ export default function LandingPage() {
                   <div className="flex justify-between items-end">
                     <p className="text-white text-2xl font-black">Realizacja Standardu: 100%</p>
                     <div className="flex gap-2">
-                      <div className="w-2 h-8 bg-teal-500 rounded-full animate-bounce" />
-                      <div className="w-2 h-12 bg-teal-500 rounded-full animate-bounce [animation-delay:0.2s]" />
-                      <div className="w-2 h-6 bg-teal-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+                      <div className="w-2 h-8 bg-teal-500 rounded-full" />
+                      <div className="w-2 h-12 bg-teal-500 rounded-full" />
+                      <div className="w-2 h-6 bg-teal-500 rounded-full" />
                     </div>
                   </div>
                 </div>
