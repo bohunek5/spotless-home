@@ -53,11 +53,18 @@ export default function LandingPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Dynamic Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-teal-500/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-blue-500/10 rounded-full blur-[120px]" />
-          <div className="absolute top-[40%] right-[20%] w-64 h-64 bg-purple-500/5 rounded-full blur-[80px]" />
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <Image
+            src="/spotless-home/visuals/premium-home-cleaning.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-left opacity-65 dark:opacity-32"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-white/25 dark:bg-slate-950/62" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-slate-50 dark:to-slate-950" />
+          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-slate-50 via-slate-50/80 to-transparent dark:from-slate-950 dark:via-slate-950/80" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 relative z-10">
