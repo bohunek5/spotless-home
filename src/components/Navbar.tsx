@@ -10,7 +10,6 @@ import {
     Info,
     Menu,
     Phone,
-    ShieldCheck,
     Sparkles,
     X,
 } from "lucide-react";
@@ -53,7 +52,7 @@ export const Navbar = () => {
             return;
         }
 
-        window.localStorage.setItem("spotless-open-calendar", "1");
+        window.localStorage.setItem("clean-serwis-open-calendar", "1");
         const basePath = window.location.pathname.startsWith("/spotless-home") ? "/spotless-home" : "";
         window.location.href = `${basePath}/#booking`;
     };
@@ -68,11 +67,11 @@ export const Navbar = () => {
             >
                 <div className="flex items-center justify-between gap-4">
                     <Link href="/" className="flex min-w-0 items-center gap-3 active:scale-[0.98]">
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-lg shadow-teal-600/20">
-                            <ShieldCheck className="h-6 w-6" />
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-lg shadow-teal-600/20 ring-4 ring-teal-500/10">
+                            <span className="text-sm font-black tracking-tight">CS</span>
                         </span>
-                        <span className="truncate text-lg font-black uppercase tracking-tight text-slate-950 dark:text-white">
-                            Spotless.
+                        <span className="truncate text-lg font-black tracking-tight text-slate-950 dark:text-white">
+                            Clean Serwis <span className="text-teal-600 dark:text-teal-400">s.c.</span>
                         </span>
                     </Link>
 

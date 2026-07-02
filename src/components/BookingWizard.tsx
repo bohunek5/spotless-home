@@ -37,8 +37,8 @@ export function BookingWizard() {
     const total = calculateTotal();
 
     useEffect(() => {
-        if (window.localStorage.getItem("spotless-open-calendar") === "1") {
-            window.localStorage.removeItem("spotless-open-calendar");
+        if (window.localStorage.getItem("clean-serwis-open-calendar") === "1") {
+            window.localStorage.removeItem("clean-serwis-open-calendar");
             setStep(3);
         }
     }, [setStep]);

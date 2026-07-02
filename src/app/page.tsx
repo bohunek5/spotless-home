@@ -155,7 +155,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <div className="text-center md:text-left">
-                  <p className="text-white font-black text-2xl tracking-tighter leading-none mb-1">Zespół SPOTLESS</p>
+                  <p className="text-white font-black text-2xl tracking-tighter leading-none mb-1">Zespół Clean Serwis</p>
                   <p className="text-teal-500 text-sm font-black uppercase tracking-widest">Profesjonalizm zweryfikowany przez standardy ISO</p>
                 </div>
               </div>
@@ -324,7 +324,7 @@ export default function LandingPage() {
               <div className="relative rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl">
                 <Image
                   src="/spotless-home/visuals/premium-home-cleaning.png"
-                  alt="Ekipa SPOTLESS podczas przygotowania mieszkania po sprzątaniu"
+                  alt="Ekipa Clean Serwis podczas przygotowania mieszkania po sprzątaniu"
                   width={800}
                   height={1000}
                   className="object-cover"
@@ -354,7 +354,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { name: "Anna Kowalska", loc: "Inwestor", text: "Profesjonalne podejście do zarządzania czystością w pakiecie najmu krótkoterminowego. Niezawodny partner biznesowy." },
-              { name: "Marek Nowak", loc: "Właściciel Firmy", text: "Standardy SPOTLESS całkowicie zmieniły atmosferę w naszym biurze. Czystość i profesjonalizm na każdym kroku." },
+              { name: "Marek Nowak", loc: "Właściciel Firmy", text: "Standardy Clean Serwis całkowicie zmieniły atmosferę w naszym biurze. Czystość i profesjonalizm na każdym kroku." },
               { name: "Julia Wiśniewska", loc: "Prywatny Apartament", text: "Bezpieczeństwo, zaufanie i perfekcja. Najlepszy serwis, z jakiego miałam okazję korzystać." }
             ].map((testimonial, id) => (
               <motion.div

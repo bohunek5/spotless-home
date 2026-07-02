@@ -61,7 +61,7 @@ export default function KontaktPage() {
                                         <Mail size={32} />
                                     </div>
                                     <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Napisz</h4>
-                                    <p className="text-xl font-black text-slate-900 dark:text-slate-100 tracking-tight">biuro@spotless.pl</p>
+                                    <p className="text-xl font-black text-slate-900 dark:text-slate-100 tracking-tight">biuro@cleanserwis.pl</p>
                                 </Card>
                             </div>
 
@@ -83,7 +83,7 @@ export default function KontaktPage() {
                                     style={{ border: 0 }}
                                     allowFullScreen={true}
                                     loading="lazy"
-                                    title="Spotless Map"
+                                    title="Clean Serwis mapa"
                                     className="grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
                                 ></iframe>
                             </Card>
