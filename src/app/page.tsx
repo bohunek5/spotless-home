@@ -9,7 +9,7 @@ import {
   Users,
   Heart, Zap,
   Leaf, Home, Briefcase, Building2, Waves,
-  Ship, Warehouse, ShieldCheck, ClipboardCheck
+  Ship, Warehouse, ShieldCheck, ClipboardCheck, Check
 } from "lucide-react";
 
 
@@ -251,14 +251,14 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white mb-6">Proces Obsługi</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed">System SPOTLESS został zaprojektowany tak, aby zapewnić pełną transparentność i najwyższą efektywność działań.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed">Od pierwszego kontaktu po odbiór prac prowadzimy usługę jasno, terminowo i z kontrolą jakości.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {[
-              { step: "01", title: "Szybka Rezerwacja", desc: "Wymierasz termin, zakres i dodatki. Płatność online w sekundy.", icon: Calendar, color: "teal" },
-              { step: "02", title: "Dopasowanie Specjalisty", desc: "Nasz algorytm wybiera najlepszego pracownika w Twojej okolicy.", icon: Users, color: "blue" },
-              { step: "03", title: "Ciesz się Efektem", desc: "Relaksujesz się, gdy my sprawiamy, że Twój dom lśni jak nowy.", icon: Sparkles, color: "purple" }
+              { step: "01", title: "Ustalenie Zakresu", desc: "Wybierasz termin, typ obiektu i potrzebne dodatki. Widzisz szacunkową cenę od razu.", icon: Calendar, color: "teal" },
+              { step: "02", title: "Przyjazd Ekipy", desc: "Dobieramy ekipę i środki do powierzchni: dom, biuro, hotel, hala albo jacht.", icon: Users, color: "blue" },
+              { step: "03", title: "Odbiór Prac", desc: "Po sprzątaniu przechodzimy checklistę i dopracowujemy miejsca wymagające uwagi.", icon: Sparkles, color: "purple" }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -280,33 +280,33 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Technology Section */}
+      {/* Quality Section */}
       <section className="py-32 bg-slate-900 dark:bg-black overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div {...fadeIn}>
-              <Badge className="mb-6 bg-teal-500 text-white rounded-full px-6 py-2 border-0">Technologia 2026</Badge>
+              <Badge className="mb-6 bg-teal-500 text-white rounded-full px-6 py-2 border-0">Standard pracy</Badge>
               <h2 className="text-4xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none">
-                Utrzymanie Czystości <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Obiektowej.</span>
+                Sprzątanie z planem, <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">nie przypadkiem.</span>
               </h2>
               <p className="text-slate-400 text-xl font-medium leading-relaxed mb-12">
-                Wdrażamy zaawansowane procesy utrzymania czystości, wykorzystując profesjonalne zaplecze techniczne oraz środki zgodne z europejskimi normami bezpieczeństwa.
+                Każdy obiekt traktujemy inaczej: dobieramy sprzęt, chemię i kolejność prac do powierzchni, natężenia ruchu oraz oczekiwanego standardu odbioru.
               </p>
 
               <div className="space-y-8">
                 {[
-                  { title: "Odpylanie Przemysłowe", desc: "Praca na profesjonalnych jednostkach ssących wysokiej mocy.", icon: ShieldCheck },
-                  { title: "Raportowanie i Kontrola", desc: "Dokumentacja powykonawcza zgodna z wewnętrznymi procedurami QA.", icon: ClipboardCheck },
-                  { title: "Chemia Obiektowa", desc: "Zastosowanie preparatów dedykowanych do konkretnych powierzchni.", icon: Leaf }
-                ].map((tech, i) => (
+                  { title: "Sprzęt do powierzchni", desc: "Odkurzacze, parownice, maszyny szorująco-zbierające i akcesoria dobrane do miejsca pracy.", icon: ShieldCheck },
+                  { title: "Checklista odbioru", desc: "Po realizacji sprawdzamy kluczowe punkty: blaty, szkło, podłogi, sanitariaty i detale.", icon: ClipboardCheck },
+                  { title: "Bezpieczna chemia", desc: "Preparaty dobieramy do kamienia, drewna, tapicerki, szkła i powierzchni roboczych.", icon: Leaf }
+                ].map((item, i) => (
                   <div key={i} className="flex gap-6 group">
                     <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-white transition-all">
-                      <tech.icon size={28} />
+                      <item.icon size={28} />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-white mb-2">{tech.title}</h4>
-                      <p className="text-slate-500 font-medium">{tech.desc}</p>
+                      <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
+                      <p className="text-slate-500 font-medium">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -323,22 +323,22 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-teal-500/10 blur-[120px] rounded-full" />
               <div className="relative rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
-                  alt="Tech"
+                  src="/spotless-home/visuals/premium-home-cleaning.png"
+                  alt="Ekipa SPOTLESS podczas przygotowania mieszkania po sprzątaniu"
                   width={800}
                   height={1000}
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
                 <div className="absolute bottom-10 left-10 right-10 p-8 bg-white/5 backdrop-blur-3xl rounded-3xl border border-white/10">
-                  <p className="text-teal-400 font-black text-xs uppercase tracking-widest mb-2">Status Systemu</p>
-                  <div className="flex justify-between items-end">
-                    <p className="text-white text-2xl font-black">Realizacja Standardu: 100%</p>
-                    <div className="flex gap-2">
-                      <div className="w-2 h-8 bg-teal-500 rounded-full" />
-                      <div className="w-2 h-12 bg-teal-500 rounded-full" />
-                      <div className="w-2 h-6 bg-teal-500 rounded-full" />
-                    </div>
+                  <p className="text-teal-400 font-black text-xs uppercase tracking-widest mb-2">Kontrola jakości</p>
+                  <div className="flex flex-col gap-3">
+                    {["Powierzchnie robocze", "Podłogi i listwy", "Szkło oraz detale"].map((label) => (
+                      <div key={label} className="flex items-center justify-between gap-4 text-white">
+                        <span className="font-black">{label}</span>
+                        <Check className="h-5 w-5 text-teal-300" />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
