@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Building2, Home, Briefcase, Plus, Minus,
     Check, ArrowRight, ArrowLeft,
-    MapPin, Mail, Phone, CreditCard, Sparkles
+    MapPin, Mail, Phone, CreditCard,
+    CalendarDays, Clock3, ShieldCheck, ClipboardCheck
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useBookingStore, EXTRAS, PropertyType } from "@/lib/store";
@@ -29,10 +31,17 @@ const steps = [
 
 export function BookingWizard() {
     const {
-        step, nextStep, prevStep, calculateTotal
+        step, nextStep, prevStep, setStep, calculateTotal
     } = useBookingStore();
 
     const total = calculateTotal();
+
+    useEffect(() => {
+        if (window.localStorage.getItem("spotless-open-calendar") === "1") {
+            window.localStorage.removeItem("spotless-open-calendar");
+            setStep(3);
+        }
+    }, [setStep]);
 
     const renderStep = () => {
         switch (step) {
@@ -52,63 +61,113 @@ export function BookingWizard() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-            {/* Progress */}
-            <div className="mb-8">
-                <div className="flex justify-between items-end mb-2">
-                    <span className="text-sm font-medium text-teal-600 dark:text-teal-400">Krok {step} z 5</span>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">{steps[step - 1]}</span>
-                </div>
-                <Progress value={(step / 5) * 100} className="h-2 bg-slate-100 dark:bg-slate-800" />
-            </div>
-
-            {/* Main Content */}
-            <div className="min-h-[500px]">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={step}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.18 }}
-                    >
-                        {renderStep()}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-
-            {/* Mobile Summary */}
-            <div className="mt-8 rounded-3xl border border-slate-200 bg-white/95 p-4 shadow-xl shadow-slate-900/10 dark:border-slate-800 dark:bg-slate-900 md:hidden">
-                <div className="flex items-center justify-between mb-2">
+        <div className="mx-auto grid max-w-6xl gap-8 px-2 py-4 lg:grid-cols-[330px_1fr]">
+            <aside className="relative overflow-hidden rounded-[2rem] bg-slate-950 p-6 text-white">
+                <Image
+                    src="/spotless-home/visuals/premium-home-cleaning.png"
+                    alt="Profesjonalny serwis sprzątający"
+                    fill
+                    className="object-cover opacity-35"
+                    sizes="330px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-slate-950/30" />
+                <div className="relative z-10 flex h-full min-h-[460px] flex-col justify-between">
                     <div>
-                        <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Suma szacunkowa</p>
+                        <Badge className="mb-4 border-0 bg-amber-400 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-slate-950">
+                            Rezerwacja online
+                        </Badge>
+                        <h2 className="text-3xl font-black leading-tight tracking-tight">
+                            Wybierz zakres, termin i godzinę serwisu.
+                        </h2>
+                        <p className="mt-4 text-sm font-semibold leading-relaxed text-slate-300">
+                            Moduł prowadzi przez wycenę, dodatki i kalendarz. Rezerwacja nie pobiera płatności automatycznie.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-3">
+                        {[
+                            { icon: CalendarDays, label: "Kalendarz terminów" },
+                            { icon: Clock3, label: "Godziny przyjazdu" },
+                            { icon: ShieldCheck, label: "Potwierdzenie kontaktu" },
+                        ].map((item) => (
+                            <div key={item.label} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-sm">
+                                <item.icon className="h-5 w-5 text-amber-300" />
+                                <span className="text-sm font-black">{item.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </aside>
+
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-950 md:p-8">
+                <div className="mb-8">
+                    <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                        <div>
+                            <span className="text-sm font-black text-teal-600 dark:text-teal-400">Krok {step} z 5</span>
+                            <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">{steps[step - 1]}</h3>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {steps.map((label, index) => (
+                                <button
+                                    key={label}
+                                    type="button"
+                                    onClick={() => setStep(index + 1)}
+                                    className={`h-9 rounded-xl px-3 text-[10px] font-black uppercase tracking-wide transition-colors ${step === index + 1
+                                        ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                                        : "bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800"
+                                        }`}
+                                >
+                                    {label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    <Progress value={(step / 5) * 100} className="h-2 bg-slate-100 dark:bg-slate-800" />
+                </div>
+
+                <div className="min-h-[500px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={step}
+                            initial={{ opacity: 0, x: 16 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -16 }}
+                            transition={{ duration: 0.16 }}
+                        >
+                            {renderStep()}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900 md:hidden">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Suma szacunkowa</p>
                         <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{total} zł</p>
                     </div>
-                    <Button onClick={nextStep} size="lg" className="px-8 rounded-full shadow-lg shadow-teal-200 dark:shadow-teal-900/20 bg-teal-600 hover:bg-teal-700 text-white">
+                    <Button onClick={nextStep} size="lg" className="h-13 rounded-2xl bg-slate-950 px-8 text-white shadow-lg shadow-slate-900/15 hover:bg-teal-700 dark:bg-white dark:text-slate-950">
                         {step === 5 ? "Zakończ" : "Dalej"} <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                 </div>
-            </div>
 
-            {/* Desktop Navigation Buttons */}
-            <div className="hidden md:flex justify-between mt-12 items-center">
-                <Button
-                    variant="outline"
-                    onClick={prevStep}
-                    disabled={step === 1}
-                    className="rounded-full px-8 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
-                >
-                    <ArrowLeft className="mr-2 w-4 h-4" /> Wstecz
-                </Button>
-
-                <div className="text-right flex items-center gap-6">
-                    <div className="text-right">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider">Suma szacunkowa</p>
-                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{total} zł</p>
-                    </div>
-                    <Button onClick={nextStep} size="lg" className="rounded-full px-12 h-14 text-lg shadow-xl shadow-teal-100 dark:shadow-teal-900/20 bg-teal-600 hover:bg-teal-700 text-white transition-all hover:scale-105 active:scale-95">
-                        {step === 5 ? "Potwierdź rezerwację" : "Kontynuuj"} <ArrowRight className="ml-2 w-5 h-5" />
+                <div className="mt-10 hidden items-center justify-between border-t border-slate-100 pt-8 dark:border-slate-800 md:flex">
+                    <Button
+                        variant="outline"
+                        onClick={prevStep}
+                        disabled={step === 1}
+                        className="rounded-2xl border-slate-200 px-8 dark:border-slate-700 dark:hover:bg-slate-800"
+                    >
+                        <ArrowLeft className="mr-2 w-4 h-4" /> Wstecz
                     </Button>
+
+                    <div className="flex items-center gap-6 text-right">
+                        <div>
+                            <p className="text-xs uppercase tracking-wider text-slate-500">Suma szacunkowa</p>
+                            <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{total} zł</p>
+                        </div>
+                        <Button onClick={nextStep} size="lg" className="h-14 rounded-2xl bg-slate-950 px-10 text-lg font-black text-white shadow-xl shadow-slate-900/15 hover:bg-teal-700 dark:bg-white dark:text-slate-950 dark:hover:bg-amber-300">
+                            {step === 5 ? "Potwierdź rezerwację" : "Kontynuuj"} <ArrowRight className="ml-2 w-5 h-5" />
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -255,41 +314,56 @@ function StepExtras() {
 
 function StepSchedule() {
     const { details, setDetails } = useBookingStore();
-    const timeSlots = ["08:00", "10:00", "12:00", "14:00", "16:00"];
+    const timeSlots = ["07:30", "09:00", "10:30", "12:00", "14:00", "16:00", "18:00", "20:00"];
 
     return (
         <div className="space-y-8">
             <div className="text-center md:text-left">
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-2">Kiedy mamy przyjechać?</h2>
-                <p className="text-slate-500 dark:text-slate-400">Wybierz preferowaną datę i godzinę.</p>
+                <h2 className="text-3xl font-black text-slate-900 dark:text-slate-50 mb-2">Kiedy mamy przyjechać?</h2>
+                <p className="text-slate-500 dark:text-slate-400">Wybierz dzień w kalendarzu i konkretną godzinę przyjazdu ekipy.</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <Card className="p-4 border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none bg-white dark:bg-slate-900">
-                    <Calendar
-                        mode="single"
-                        selected={details.date}
-                        onSelect={(date) => setDetails({ date })}
-                        className="w-full"
-                        disabled={(date) => date < new Date()}
-                        locale={pl}
-                    />
+            <div className="grid grid-cols-1 gap-8 items-start">
+                <Card className="overflow-hidden rounded-[2rem] border-slate-100 bg-white p-4 shadow-xl shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900 dark:shadow-none">
+                    <div className="mb-4 flex items-center justify-between rounded-2xl bg-slate-50 p-4 dark:bg-slate-950">
+                        <div>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Kalendarz</p>
+                            <p className="font-black text-slate-950 dark:text-white">Najbliższe dostępne terminy</p>
+                        </div>
+                        <CalendarDays className="h-6 w-6 text-teal-600 dark:text-teal-400" />
+                    </div>
+                    <div className="overflow-x-auto pb-2">
+                        <Calendar
+                            mode="single"
+                            selected={details.date}
+                            onSelect={(date) => setDetails({ date })}
+                            className="min-w-[320px] w-full [--cell-size:2rem] md:[--cell-size:2.25rem]"
+                            numberOfMonths={2}
+                            disabled={(date) => date < new Date()}
+                            locale={pl}
+                        />
+                    </div>
                 </Card>
 
                 <div className="space-y-6">
-                    <h3 className="text-xl font-bold flex items-center gap-2 dark:text-slate-100">
-                        <Sparkles className="w-5 h-5 text-teal-500" /> Dostępne Godziny
-                    </h3>
-                    <div className="grid grid-cols-1 gap-3">
+                    <div>
+                        <h3 className="text-xl font-black flex items-center gap-2 dark:text-slate-100">
+                            <Clock3 className="w-5 h-5 text-teal-500" /> Dostępne godziny
+                        </h3>
+                        <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+                            Wybierz slot. Potwierdzimy telefonicznie przed przyjazdem.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                         {timeSlots.map((slot) => (
                             <Button
                                 key={slot}
                                 variant={details.timeSlot === slot ? "default" : "outline"}
                                 className={cn(
-                                    "justify-between h-14 rounded-2xl px-6 text-lg transition-all",
+                                    "justify-between h-14 rounded-2xl px-5 text-base font-black transition-colors",
                                     details.timeSlot === slot
-                                        ? "bg-teal-600 text-white shadow-lg shadow-teal-100 dark:shadow-teal-900/20"
-                                        : "border-slate-200 dark:border-slate-700 hover:border-teal-300 dark:hover:border-teal-700 dark:text-slate-300"
+                                        ? "bg-slate-950 text-white shadow-lg shadow-slate-900/10 dark:bg-white dark:text-slate-950"
+                                        : "border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:border-teal-300 dark:hover:border-teal-700"
                                 )}
                                 onClick={() => setDetails({ timeSlot: slot })}
                             >
@@ -297,6 +371,18 @@ function StepSchedule() {
                                 {details.timeSlot === slot && <Check className="w-5 h-5" />}
                             </Button>
                         ))}
+                    </div>
+
+                    <div className="rounded-[2rem] border border-amber-200 bg-amber-50 p-5 dark:border-amber-900/40 dark:bg-amber-950/20">
+                        <div className="flex items-start gap-3">
+                            <ClipboardCheck className="mt-1 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-300" />
+                            <div>
+                                <p className="font-black text-slate-950 dark:text-white">Co dalej?</p>
+                                <p className="mt-1 text-sm font-medium leading-relaxed text-slate-600 dark:text-slate-300">
+                                    Po wyborze terminu przejdziesz do danych kontaktowych. Zespół oddzwoni i potwierdzi zakres.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

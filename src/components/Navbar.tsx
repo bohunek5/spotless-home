@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-    Briefcase,
+    CalendarDays,
     ChevronRight,
     CreditCard,
     Info,
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import { ModeToggle } from "./ModeToggle";
+import { useBookingStore } from "@/lib/store";
 
 const navLinks = [
     { name: "Oferta", href: "/oferta", icon: Sparkles },
@@ -28,6 +29,7 @@ export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname();
+    const setStep = useBookingStore((state) => state.setStep);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -38,13 +40,22 @@ export const Navbar = () => {
 
     const goToBooking = () => {
         setIsMenuOpen(false);
+        setStep(3);
 
         if (pathname === "/") {
-            document.getElementById("booking")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            window.setTimeout(() => {
+                const booking = document.getElementById("booking");
+                if (!booking) return;
+
+                const targetTop = booking.getBoundingClientRect().top + window.scrollY - 110;
+                window.scrollTo({ top: targetTop, behavior: "smooth" });
+            }, 80);
             return;
         }
 
-        window.location.href = "/#booking";
+        window.localStorage.setItem("spotless-open-calendar", "1");
+        const basePath = window.location.pathname.startsWith("/spotless-home") ? "/spotless-home" : "";
+        window.location.href = `${basePath}/#booking`;
     };
 
     return (
@@ -65,7 +76,7 @@ export const Navbar = () => {
                         </span>
                     </Link>
 
-                    <div className="hidden items-center gap-1 lg:flex">
+                    <div className="hidden items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50 p-1 dark:border-slate-800 dark:bg-slate-900 lg:flex">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
 
@@ -73,12 +84,12 @@ export const Navbar = () => {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`flex items-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-black uppercase tracking-wide transition-colors ${isActive
-                                        ? "bg-teal-600 text-white"
-                                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-900 dark:hover:text-white"
+                                    className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-black uppercase tracking-wide transition-colors ${isActive
+                                        ? "bg-white text-slate-950 shadow-sm dark:bg-slate-800 dark:text-white"
+                                        : "text-slate-600 hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                                         }`}
                                 >
-                                    <link.icon className={`h-4 w-4 ${isActive ? "text-teal-100" : "text-teal-600 dark:text-teal-400"}`} />
+                                    <link.icon className={`h-4 w-4 ${isActive ? "text-teal-600 dark:text-teal-300" : "text-slate-400"}`} />
                                     {link.name}
                                 </Link>
                             );
@@ -86,13 +97,20 @@ export const Navbar = () => {
                     </div>
 
                     <div className="hidden items-center gap-3 lg:flex">
+                        <a
+                            href="tel:+48500600700"
+                            className="inline-flex h-11 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 text-sm font-black text-slate-800 shadow-sm transition-colors hover:border-teal-200 hover:text-teal-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-teal-700"
+                        >
+                            <Phone className="h-4 w-4 text-teal-600 dark:text-teal-400" />
+                            500 600 700
+                        </a>
                         <ModeToggle />
                         <button
                             type="button"
                             onClick={goToBooking}
-                            className="inline-flex h-11 items-center gap-2 rounded-2xl bg-slate-950 px-5 text-sm font-black uppercase tracking-wide text-white shadow-lg shadow-slate-900/15 transition-colors hover:bg-teal-600 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-300"
+                            className="inline-flex h-11 items-center gap-2 rounded-2xl bg-amber-400 px-5 text-sm font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-amber-500/20 transition-colors hover:bg-amber-300 dark:bg-amber-300 dark:hover:bg-amber-200"
                         >
-                            <Briefcase className="h-4 w-4" />
+                            <CalendarDays className="h-4 w-4" />
                             Zarezerwuj
                         </button>
                     </div>
@@ -140,9 +158,9 @@ export const Navbar = () => {
                         <button
                             type="button"
                             onClick={goToBooking}
-                            className="mt-3 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-teal-600 text-sm font-black uppercase tracking-wide text-white shadow-lg shadow-teal-600/20 transition-colors hover:bg-teal-700"
+                            className="mt-3 flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-amber-400 text-sm font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-amber-500/20 transition-colors hover:bg-amber-300"
                         >
-                            <Briefcase className="h-5 w-5" />
+                            <CalendarDays className="h-5 w-5" />
                             Zarezerwuj termin
                         </button>
                     </div>
